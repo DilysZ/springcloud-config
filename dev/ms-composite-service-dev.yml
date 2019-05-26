@@ -1,0 +1,27 @@
+server:
+  port: 20001
+  tomcat:
+    accept-count: 10000
+    max-connections: 1000
+    max-threads: 500  
+
+feign:
+  hystrix:
+    enabled: true
+    
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 10000
+            
+logging:
+  file: composite-service.log
+  level:
+    com.demo: DEBUG
+    org.springframework: WARN
+
+demo:
+  test: aaa

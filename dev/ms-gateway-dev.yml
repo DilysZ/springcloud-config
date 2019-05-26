@@ -1,0 +1,36 @@
+server:
+    port: 10001
+    tomcat:
+        accept-count: 100000
+        max-connnetions: 100000
+        max-threads: 5000
+
+logging:
+  level:
+    com.demo.gateway: INFO
+    org.springframework: WARN
+
+zuul:
+    host:
+        maxTotalConnections: 100000
+        maxPerRouteConnections: 1000000
+        connect-timeout-millis: 10000
+        socket-timeout-millis: 10000
+    semaphore:
+        max-semaphores: 1000000
+    include-debug-header: false
+    AccessFilter:
+        pre:
+            disable: false
+    LogFilter:
+        pre:
+            disable: false
+    routes:
+        composite-service:
+            path: /composite/**
+            serviceId: composite-service
+            strip-prefix: false
+        content-center:
+            path: /contentCenter/**
+            serviceId: content-query
+            strip-prefix: false 
